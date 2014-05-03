@@ -122,7 +122,7 @@ JENKINS_CONFIG_XML="${JENKINS_HOME}/config.xml"
 # IP address Jenkins listens on for HTTP requests.
 # Default is all interfaces (0.0.0.0).
 #
-JENKINS_LISTEN_ADDRESS=""
+: ${JENKINS_LISTEN_ADDRESS:=""}
 
 ## Type:        integer(0:65535)
 ## Default:     ""
@@ -131,7 +131,7 @@ JENKINS_LISTEN_ADDRESS=""
 # HTTPS port Jenkins is listening on.
 # Default is disabled.
 #
-JENKINS_HTTPS_PORT=""
+: ${JENKINS_HTTPS_PORT:=""}
 
 ## Type:        string
 ## Default:     ""
@@ -140,7 +140,7 @@ JENKINS_HTTPS_PORT=""
 # IP address Jenkins listens on for HTTPS requests.
 # Default is disabled.
 #
-JENKINS_HTTPS_LISTEN_ADDRESS=""
+: ${JENKINS_HTTPS_LISTEN_ADDRESS:=""}
 
 ## Type:        integer(0:65535)
 ## Default:     -1
@@ -158,7 +158,7 @@ JENKINS_HTTPS_LISTEN_ADDRESS=""
 # IP address Jenkins listens on for Ajp13 requests.
 # Default is all interfaces (0.0.0.0).
 #
-JENKINS_AJP_LISTEN_ADDRESS=""
+: ${JENKINS_AJP_LISTEN_ADDRESS:=""}
 
 ## Type:        integer(1:9)
 ## Default:     5
