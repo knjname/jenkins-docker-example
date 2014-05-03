@@ -19,6 +19,6 @@ ADD http://mirrors.jenkins-ci.org/war/latest/jenkins.war /jenkins/bin/jenkins.wa
 ADD resources/run.sh /jenkins/bin/run.sh
 
 # Declarations
-CMD /jenkins/bin/run.sh
+CMD bash /jenkins/bin/run.sh
 
 

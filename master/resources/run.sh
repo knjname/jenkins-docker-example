@@ -78,6 +78,7 @@
 : ${JENKINS_JNLP_PORT:=""}
 JENKINS_CONFIG_XML="${JENKINS_HOME}/config.xml"
 
+
 ## Type:        string
 ## Default:     ""
 ## ServiceRestart: jenkins
@@ -203,9 +204,9 @@ JENKINS_AJP_LISTEN_ADDRESS=""
 
 
 # Check whether fundamental conditions are satisfied.
-test -r "$JENKINS_WAR" || { echo "$JENKINS_WAR not installed"; exit 5 }
-[ -n "$JENKINS_HOME" ] || { echo "JENKINS_HOME not configured in $JENKINS_CONFIG"; exit 6 }
-[ -d "$JENKINS_HOME" ] || { echo "JENKINS_HOME directory does not exist: $JENKINS_HOME"; exit 1 }
+[ -r "$JENKINS_WAR"  ] || { echo "$JENKINS_WAR not installed"; exit 5 ; }
+[ -n "$JENKINS_HOME" ] || { echo "JENKINS_HOME not configured in $JENKINS_CONFIG"; exit 6 ; }
+[ -d "$JENKINS_HOME" ] || { echo "JENKINS_HOME directory does not exist: $JENKINS_HOME"; exit 1 ; }
 
 # Search usable Java. We do this because various reports indicated
 # that /usr/bin/java may not always point to Java 1.5
@@ -218,7 +219,7 @@ done
 
 # Construct the arguments to be given to Jenkins.
 JAVA_CMD="$JENKINS_JAVA_CMD $JENKINS_JAVA_OPTIONS -DJENKINS_HOME=$JENKINS_HOME -jar $JENKINS_WAR"
-PARAMS="--logfile=${JENKINS_LOG_DIR}/jenkins.log --webroot=/var/cache/jenkins/war --daemon"
+PARAMS="--logfile=${JENKINS_LOG_DIR}/jenkins.log --webroot=/var/cache/jenkins/war"
 [ -n "$JENKINS_PORT" ] && PARAMS="$PARAMS --httpPort=$JENKINS_PORT"
 [ -n "$JENKINS_LISTEN_ADDRESS" ] && PARAMS="$PARAMS --httpListenAddress=$JENKINS_LISTEN_ADDRESS"
 [ -n "$JENKINS_HTTPS_PORT" ] && PARAMS="$PARAMS --httpsPort=$JENKINS_HTTPS_PORT"
@@ -251,7 +252,7 @@ if ! [ -f "${JENKINS_CONFIG_XML}" ] ; then
 EOF
 fi
 if [ -n "${JENKINS_JNLP_PORT}" ] ; then
-    sed -i 's|<slaveAgentPort>.*</slaveAgentPort>|<slaveAgentPort>${JENKINS_JNLP_PORT}</slaveAgentPort>|' "${JENKINS_CONFIG_XML}"
+    sed -i "s|<slaveAgentPort>.*</slaveAgentPort>|<slaveAgentPort>${JENKINS_JNLP_PORT}</slaveAgentPort>|" "${JENKINS_CONFIG_XML}"
 fi
 
 # Launch the Jenkins!
