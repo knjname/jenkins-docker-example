@@ -6,14 +6,16 @@ This project contains various files such as Dockerfile or related files, which f
 ## To build Jenkins master node
 
 ```
-#> bash master/dockerbuild.sh
+#> cd master
+#> bash dockerbuild.sh
 (An image knjname/jenkins-master will be registered.)
 ```
 
 ### And to run
 
 ```
-#> bash master/dockerrun.sh
+#> cd master
+#> bash dockerrun.sh
 (Note that /opt/jenkins-example will be automatically created.)
 ```
 
@@ -22,14 +24,16 @@ You can see the Jenkins at http://your_docker_host:8080/ .
 ## To build Jenkins master node
 
 ```
-#> bash slave/dockerbuild.sh
+#> cd slave
+#> bash dockerbuild.sh
 (An image knjname/jenkins-slave will be registered.)
 ```
 
 ### And to run
 
 ```
-#> bash slave/dockerrun.sh
+#> cd slave
+#> bash dockerrun.sh
 ```
 
 SSHD listens to your_docker_host:10022 .
